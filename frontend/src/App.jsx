@@ -7,6 +7,7 @@ import OpportunityEngine from "./components/OpportunityEngine.jsx";
 import PredictionPanel from "./components/PredictionPanel.jsx";
 import StressSignature from "./components/StressSignature.jsx";
 import UploadZone from "./components/UploadZone.jsx";
+import { buildLocalSampleAnalysis } from "./data/localAnalysis.js";
 
 const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:8000";
 
@@ -41,6 +42,11 @@ export default function App() {
       setAnalysis(result);
       if (result.error || result.warning) setError(result.error || result.warning);
     } catch (err) {
+      if (sampleMode) {
+        setAnalysis(buildLocalSampleAnalysis());
+        setError("Live backend is unavailable, so PULSE loaded the built-in sample scan for the demo.");
+        return;
+      }
       setError(`${err.message} Start the backend or use docker compose, then try the sample again.`);
     } finally {
       setIsLoading(false);
