@@ -83,17 +83,11 @@ Backend health check: `http://localhost:8000/api/health`
 
 ## Screenshot Placeholders
 
-### Landing And Privacy
-
-![Landing privacy upload](docs/screenshots/01-landing-privacy-upload.png)
 
 ### Body Scan Overview
 
 ![Body scan overview](docs/screenshots/02-body-scan-overview.png)
 
-### Body Scan Organ Detail
-
-![Body scan organ detail](docs/screenshots/03-body-scan-organ-detail.png)
 
 ### Leak Map
 
@@ -118,19 +112,3 @@ Backend health check: `http://localhost:8000/api/health`
   - `file`: optional CSV or PDF
   - `sample_mode`: `true` or `false`
 - `POST /api/predict` with summary JSON
-
-## Hackathon Demo Path
-
-1. Start backend and frontend.
-2. Click `Use sample statement`.
-3. Lead with the Body Scan.
-4. Show the red/amber organ story, then open Leaks.
-5. Close with the Opportunity Engine AHA number.
-
-## Submission Assets
-
-- Devpost draft: `docs/submission/devpost.md`
-- Demo video script: `docs/submission/demo_script.md`
-- Testing plan: `docs/submission/testing_plan.md`
-- Checklist status: `docs/submission/checklist_status.md`
-- Screenshot checklist: `docs/screenshots/README.md`
