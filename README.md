@@ -32,6 +32,8 @@ PULSE treats your bank statement like a radiologist treats an X-ray: it scans ev
 
 Frontend: https://pulse-lake-alpha.vercel.app
 
+Backend: https://pulse-backend-l89i.onrender.com
+
 The live frontend includes a resilient sample mode so judges can complete the demo even if the backend service is sleeping or not yet connected.
 
 ## Privacy Promise
@@ -81,21 +83,33 @@ Backend health check: `http://localhost:8000/api/health`
 
 ## Screenshot Placeholders
 
-### Body Scan
+### Landing And Privacy
 
-Add screenshot: `docs/screenshots/body-scan.png`
+![Landing privacy upload](docs/screenshots/01-landing-privacy-upload.png)
+
+### Body Scan Overview
+
+![Body scan overview](docs/screenshots/02-body-scan-overview.png)
+
+### Body Scan Organ Detail
+
+![Body scan organ detail](docs/screenshots/03-body-scan-organ-detail.png)
 
 ### Leak Map
 
-Add screenshot: `docs/screenshots/leak-map.png`
+![Leak map](docs/screenshots/04-leak-map.png)
 
 ### Stress Signature
 
-Add screenshot: `docs/screenshots/stress-signature.png`
+![Stress signature](docs/screenshots/05-stress-signature.png)
 
 ### Opportunity Engine
 
-Add screenshot: `docs/screenshots/opportunity-engine.png`
+![Opportunity engine](docs/screenshots/06-opportunity-engine.png)
+
+### Prediction Panel
+
+![Predictions](docs/screenshots/07-predictions.png)
 
 ## API
 
@@ -118,4 +132,5 @@ Add screenshot: `docs/screenshots/opportunity-engine.png`
 - Devpost draft: `docs/submission/devpost.md`
 - Demo video script: `docs/submission/demo_script.md`
 - Testing plan: `docs/submission/testing_plan.md`
+- Checklist status: `docs/submission/checklist_status.md`
 - Screenshot checklist: `docs/screenshots/README.md`
