@@ -28,6 +28,12 @@ PULSE treats your bank statement like a radiologist treats an X-ray: it scans ev
 - Opportunity Engine: SIP redirection calculator with 5, 10, and 20 year wealth projections.
 - Prediction Panel: Conservative 30-day predictions for overspend risks and upcoming bills.
 
+## Live Demo
+
+Frontend: https://pulse-lake-alpha.vercel.app
+
+The live frontend includes a resilient sample mode so judges can complete the demo even if the backend service is sleeping or not yet connected.
+
 ## Privacy Promise
 
 Your data is analyzed and immediately discarded. Nothing is stored on any server. PULSE is stateless and uses no database.
@@ -106,3 +112,10 @@ Add screenshot: `docs/screenshots/opportunity-engine.png`
 3. Lead with the Body Scan.
 4. Show the red/amber organ story, then open Leaks.
 5. Close with the Opportunity Engine AHA number.
+
+## Submission Assets
+
+- Devpost draft: `docs/submission/devpost.md`
+- Demo video script: `docs/submission/demo_script.md`
+- Testing plan: `docs/submission/testing_plan.md`
+- Screenshot checklist: `docs/screenshots/README.md`

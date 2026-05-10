@@ -41,13 +41,38 @@ def _category_for(description: str) -> str:
     return "other"
 
 
+def _first_present(row: dict[str, Any], *keys: str) -> Any:
+    for key in keys:
+        value = row.get(key)
+        if value is None:
+            continue
+        if isinstance(value, float) and pd.isna(value):
+            continue
+        if str(value).strip() == "":
+            continue
+        return value
+    return None
+
+
 def normalize_transactions(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     transactions = []
     for row in rows:
-        description = str(row.get("description") or row.get("narration") or row.get("details") or row.get("particulars") or "Transaction").strip()
-        amount = row.get("amount")
-        credit = row.get("credit")
-        debit = row.get("debit")
+        description = str(
+            _first_present(
+                row,
+                "description",
+                "narration",
+                "details",
+                "particulars",
+                "transaction remarks",
+                "remarks",
+                "transaction description",
+            )
+            or "Transaction"
+        ).strip()
+        amount = _first_present(row, "amount", "transaction amount", "txn amount")
+        credit = _first_present(row, "credit", "deposit", "deposit amt", "deposit amount", "cr")
+        debit = _first_present(row, "debit", "withdrawal", "withdrawal amt", "withdrawal amount", "dr")
         txn_type = str(row.get("type") or "").lower()
 
         if amount is None or amount == "":
@@ -72,7 +97,9 @@ def normalize_transactions(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         category = str(row.get("category") or _category_for(description)).lower()
         transactions.append(
             {
-                "date": _parse_date(row.get("date") or row.get("txn date") or row.get("transaction date") or row.get("value date")),
+                "date": _parse_date(
+                    _first_present(row, "date", "txn date", "transaction date", "value date", "posting date")
+                ),
                 "description": description,
                 "amount": round(numeric_amount, 2),
                 "type": txn_type,
@@ -85,7 +112,7 @@ def normalize_transactions(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 def parse_csv_bytes(content: bytes) -> list[dict[str, Any]]:
     text = content.decode("utf-8-sig", errors="ignore")
     dataframe = pd.read_csv(io.StringIO(text))
-    dataframe.columns = [str(col).strip().lower() for col in dataframe.columns]
+    dataframe.columns = [re.sub(r"[^a-z0-9 ]", "", str(col).strip().lower()).strip() for col in dataframe.columns]
     return normalize_transactions(dataframe.to_dict(orient="records"))
 
 
